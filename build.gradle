@@ -1,7 +1,7 @@
 apply plugin: 'java'
 
 group = 'org.thiagogebrim'
-version = '1.0'
+version = '1.0.0'
 
 repositories {
     mavenCentral()
@@ -12,12 +12,12 @@ repositories {
 }
 
 dependencies {
-    compileOnly("net.md-5:bungeecord-api:1.21-R0.1-SNAPSHOT")
+    compileOnly 'net.md-5:bungeecord-api:1.20-R0.2'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
 
 
-def targetJavaVersion = 8
+def targetJavaVersion = 17
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion
