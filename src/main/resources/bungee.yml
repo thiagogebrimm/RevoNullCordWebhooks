@@ -1,3 +1,4 @@
 name: RevoNullCordWebhooks
-version: '1.0'
+version: '1.0.0'
+author: thiagogebrim
 main: org.thiagogebrim.revoNullCordWebhooks.RevoNullCordWebhooks

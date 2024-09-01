@@ -2,6 +2,9 @@ package org.thiagogebrim.revoNullCordWebhooks;
 
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
+import net.md_5.bungee.config.Configuration;
+import net.md_5.bungee.config.ConfigurationProvider;
+import net.md_5.bungee.config.YamlConfiguration;
 import org.thiagogebrim.revoNullCordWebhooks.listeners.AttackListener;
 
 import java.io.*;
@@ -54,9 +57,19 @@ public final class RevoNullCordWebhooks extends Plugin {
             }
         }
 
-        // Carrega a configuração
-        webhookUrl = getProxy().getConfigurationAdapter().getString("webhook-url", null);
+        // Utiliza Configuration para carregar o arquivo
+        try {
+            Configuration config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(configFile);
+            webhookUrl = config.getString("webhook-url", null);
+
+            // Adicione essa linha para verificar se o webhookUrl foi carregado corretamente
+            getLogger().info("URL do webhook carregada: " + webhookUrl);
+
+        } catch (IOException e) {
+            getLogger().log(Level.SEVERE, "Erro ao carregar config.yml!", e);
+        }
     }
+
 
     private void saveDefaultConfig() {
         if (!getDataFolder().exists()) {
